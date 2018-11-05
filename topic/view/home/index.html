@@ -1,0 +1,1624 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <title>穗藝花坊</title>
+  
+    <!--CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link href="/css/jquery.flexisel.css" rel="stylesheet" type="text/css" />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <style>
+      .carousel-indicators .active {
+        background-color: rgba(0,0,0,1);
+      }
+      .carousel-indicators li {
+        background-color: rgba(0,0,0,.5);
+      }
+    </style>
+  </head>
+  
+  <body>
+    <!-- Menu -->
+    <div class="mainMenu">
+      <div class="iconFix">
+        <a href="#" data-toggle="modal" data-target="#shoppingModal"><img class="shoppingIcon" src="/images/shopping_w.png"/></a>
+        <a href="#" data-toggle="modal" data-target="#menuModal"><img class="menuIcon" src="/images/menu_w.png"/></a>
+      </div>
+      
+        <!-- menuModal -->
+        <div class="modal fade" id="menuModal" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content modal-content-style">
+              
+                <div class="modal-body-style">
+                  <div class="modal-body">
+                     <div class="container-fluid">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h5 class="modal-title modal-title-style" id="ModalTitle">穗藝花坊</h5>
+                                <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                </button>
+                          </div>
+                          <div class="col-md-5">
+                            <div class="modal-menu modal-menu-firstitem"><a href="#mainImage" id="modal-menuImage"><span class="modal-menu-num">01.</span>花映光影</a></div>
+                            <div class="modal-menu"><a href="#mainIntroduction" id="modal-menuIntroduction"><span class="modal-menu-num">02.</span>花藝簡介</a></div>
+                            <div class="modal-menu"><a href="#mainProduct" id="modal-menuProduct"><span class="modal-menu-num">03.</span>花藝新品</a></div>
+                            <div class="modal-menu"><a href="#mainClass" id="modal-menuClass"><span class="modal-menu-num">04.</span>花藝課程</a></div>
+                            <div class="modal-menu"><a href="#mainConnect" id="modal-menuConnect"><span class="modal-menu-num">05.</span>聯絡我們</a></div>
+                          </div>
+                          <div class="col-md-7">
+                            <div class="modal-info-style">
+                            <div class="modal-info modal-info-firstitem">營業時間：週一~週日 10:00~18:00</div>
+                            <div class="modal-info">店休時間：固定週三</div>
+                            <div class="modal-info">連絡電話：04-2243-0766</div>
+                            <div class="modal-info">電子信箱：Suei-Yi@gmail.com</div>
+                            <div class="modal-info">門市地址：台中市南屯區大墩十街186號</div>
+                         </div>
+                             
+                            <div class="modal-icon">
+                              <img src="/images/twitter.png"/>
+                              <img src="/images/ig.png"/>
+                              <img src="/images/fb.png"/>
+                            </div>
+                            
+                        </div>
+                     </div>   
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        
+         <!-- shoppingModal -->
+        <div class="modal fade" id="shoppingModal" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content modal-content-style">
+              
+                <div class="modal-body-style">
+                  <div class="modal-body">
+                     <div class="container-fluid">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h5 class="modal-title modal-product-title-style" id="ModalTitle">購物車</h5>
+                                <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                </button>
+                          </div>
+                            
+                            <div class="col-md-12 modal-inquire-style">
+                                <div class="modal-shopping-title1">品項</div>
+                                <div class="modal-shopping-title2">單價</div>
+                                <div class="modal-shopping-title3">數量</div>
+                                <div class="modal-shopping-title4">刪除</div>
+                                
+                                <% if (rows == "") { %>
+                                <div class="shopping-items">
+                                  
+                                  <div class="modal-shopping-content">
+                                    目前沒有任何商品!
+                                  </div>
+                                  
+                                  <div id="classHeading" class="price">0</div>
+                                  
+                                  <input id="classHeading" class="modal-shopping-Quantity quantity" value="0">
+                                
+                                </div>
+                                <% } %>
+                                
+                                <% for (var i in rows) { %>
+                                <div class="shopping-items">
+                                  <div class="modal-shopping-content1-1">
+                                    <img class="img-fluid" src="<%= rows[i].goodsImg %>">
+                                  </div>
+                                  
+                                  <div class="modal-shopping-content1-2" id="shoppingProduct">
+                                    <%= rows[i].goodsName %>
+                                  </div>
+                                  
+                                  <div class="modal-shopping-content2">
+                                    NT$<span class="price"><%= rows[i].goodsPrice %></span>
+                                  </div>
+                                  <div class="modal-shopping-content3">
+                                    <input class="modal-shopping-Quantity quantity" id="shoppingQuantity" value="<%= rows[i].goodsQuantity %>">
+                                  </div>
+                                  <div class="modal-shopping-content4">
+                                    <a href="/home/delete_product?id=<%= rows[i].goodsID %>"><img src="/images/delete.png"></a>
+                                    
+                                  </div>
+                                </div>
+                                <% } %>
+                                
+                                <div class="shopping-total">
+                                  總計：NT$<span class="total"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12 modal-shopping-style">
+                              <form class="form-horizontal" method="post" action="/home/shopping">
+                                <% if (rows != "") { %>
+                                <input id="classHeading" name="shoppingProduct" value="<%= rows[0].goodsName %>">
+                                <input id="classHeading" name="shoppingQuantity" value="<%= rows[0].goodsQuantity %>">
+                                <input id="classHeading" name="shoppingAmount" class="total2">
+                                <% } %>
+                                <div class="form-group row">
+                                  <label for="shoppingName" class="col-md-2 col-form-label modal-class-title">姓名：</label>
+                                  <div class="col-md-4">
+                                      <input type="Name" class="form-control modal-inquire-input" id="shoppingName" name="shoppingName" required="required">
+                                  </div>
+                                  
+                                  
+                                  <label for="shoppingMethod" class="col-md-2 col-form-label modal-class-title">付款方式：</label>
+                                    <div class="col-md-4">
+                                    <select id="shoppingMethod" name="shoppingMethod" class="form-control modal-inquire-input">
+                                      <option selected>線上刷卡</option>
+                                      <option>ATM轉帳</option>
+                                      <option>網路ATM</option>
+                                    </select>
+                                  </div>
+                                  
+                                  <label for="shoppingPhonenember" class="col-md-2 col-form-label modal-class-title">聯絡電話：</label>
+                                  <div class="col-md-4">
+                                    <input type="Phonenember" class="form-control modal-inquire-input" id="shoppingPhonenember" name="shoppingPhonenember" required="required">
+                                  </div>
+                                  
+                                  <label for="shoppingEmail" class="col-md-2 col-form-label modal-class-title">電子信箱：</label>
+                                  <div class="col-md-4">
+                                    <input type="email" class="form-control modal-inquire-input" id="shoppingEmail" name="shoppingEmail" required="required">
+                                  </div>
+                                  
+                                  <label for="shoppingAddress" class="col-md-2 col-form-label modal-class-title">聯絡地址：</label>
+                                  <div class="col-md-10">
+                                    <input type="Address" class="form-control modal-inquire-input" id="shoppingAddress" name="shoppingAddress" required="required">
+                                  </div>
+                                  
+                                  <div class="col-md-12">
+                                  <button type="submit" class="btn btn-primary modal-shopping-btn">送出訂單</button>
+                                  <button type="button" class="btn btn-primary shopping-btn">繼續購物</button>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                            
+                            
+                            </div>
+                          </div>
+                        </div>
+                     </div>   
+                  </div>
+                </div>
+              
+              </div>
+            
+            
+    </div>
+    
+    <!-- SideMenu -->
+    <div class="sideMenu">
+        <ul>
+            <a class="sideMenuPoint" id="menuImage" href="#mainImage"><li></li></a> 
+            <a class="sideMenuPoint" id="menuIntroduction" href="#mainIntroduction"><li></li></a>
+            <a class="sideMenuPoint" id="menuProduct" href="#mainProduct"><li></li></a>
+            <a class="sideMenuPoint" id="menuClass" href="#mainClass"><li></li></a>
+            <a class="sideMenuPoint" id="menuConnect" href="#mainConnect"><li></li></a>
+        </ul>
+    </div>
+    
+    <!-- Image -->
+    <div class="mainImage" id="mainImage">
+      <div class="row">
+        <div class="col-md-2 logo">
+          <img class="img-fluid" src="/images/logo.png"/>
+        </div>
+      </div>  
+        
+        <div class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
+    
+            <!-- 輪播的圖清單 -->
+            <div class="carousel-inner" role="listbox">
+                
+                <!-- 0 -->
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="/images/image_01.jpg"/>
+                </div>
+    
+                <!-- 1 -->
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="/images/image_02.jpg">
+                </div>
+    
+                <!-- 2 -->
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="/images/image_03.jpg">
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    
+    <!--Introduction-->
+    <div class="container-fluid" id="mainIntroduction">
+      <div class="introTitle">穗藝簡介</div>
+        <div class="row" >
+            <div class="col-md-6 intro-img-style1">
+              <div class="intro-img">
+                <img class="img-fluid intro1" src="/images/intro01.jpg"/>
+              </div>
+              <div class="intro-img">
+                <img class="img-fluid intro3" src="/images/intro03.jpg"/>
+              </div>  
+              <div class="intro-img">
+                <img class="img-fluid intro4" src="/images/intro04.jpg"/>
+              </div>  
+              <div class="intro-img">
+                <img class="img-fluid intro2" src="/images/intro02.jpg"/>
+              </div> 
+              <div class="intro-img">
+                <img class="img-fluid intro5" src="/images/intro05.jpg"/>
+              </div>  
+            </div>
+            
+            <div class="col-md-6">
+              <div class="col-md-12" >
+                <div class="intro-content">
+                  <h4 class="intro-title">Our Story</h4>
+                  <div class="intro-text">
+                    擅於靈活運用複合媒材進行創作，從設計的角度架構植物的姿態，以凸顯植物與空間的關聯性；除了花禮、花束創作之外，每月開設的花藝教學課程也頗受好評，亦提供居家、商業空間佈置及活動策劃、統合等服務。<br>
+                    2018年擴大經營範圍，引進日本擬真素材及花器，同步掌握日本最新素材發表資訊，積極推廣運用於空間佈置，為具備特殊素材取得、規劃設計提案到現場施作的全方位專業團隊。
+                    
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-12 intro-img-style2" >
+                <div class="intro-img">
+                  <img class="img-fluid intro6" src="/images/intro06.jpg"/>
+                </div> 
+                <div class="intro-img">
+                  <img class="img-fluid intro7" src="/images/intro07.jpg"/>
+                </div> 
+              </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!--Products-->
+    <div class="container-fluid" id="mainProduct">
+        <div class="productTitle">花藝新品</div>
+        
+         <ul id="productItem">
+            <li id="productName11" class="productName" data-toggle="modal" data-target="#productModal"><img src="/images/goods01_1.jpg" /><br>亞特蘭提斯之羽</li>
+            <li id="productName12" class="productName" data-toggle="modal" data-target="#productModal"><img src="/images/goods02_1.jpg" /><br>雅典娜之淚</li>
+            <li id="productName13" class="productName" data-toggle="modal" data-target="#productModal"><img src="/images/goods03_1.jpg" /><br>紅磨坊之吻</li>
+            <li id="productName21" class="productName" data-toggle="modal" data-target="#productModal"><img src="/images/goods04_1.jpg" /><br>古典森系-黑鎳色珠寶盒</li>
+            <li id="productName22" class="productName" data-toggle="modal" data-target="#productModal"><img src="/images/goods05_1.jpg" /><br>古典森系-玫瑰金珠寶盒</li>
+            <li id="productName31" class="productName" data-toggle="modal" data-target="#productModal"><img src="/images/goods06_1.jpg" /><br>天使手腕花</li>
+            <li id="productName32" class="productName" data-toggle="modal" data-target="#productModal"><img src="/images/goods07_1.jpg" /><br>璀璨手腕花</li>
+        </ul>  
+        
+        <button type="button" class="btn btn-primary product-btn d-block mx-auto" data-toggle="modal" data-target="#productModal">新品總覽</button>
+
+      <!-- productModal -->
+      <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content modal-content-style">
+              
+                <div class="modal-body-style">
+                  <div class="modal-body">
+                     <div class="container-fluid">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h5 class="modal-title modal-product-title-style" id="ModalTitle">新品總覽</h5>
+                                <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                </button>
+                          </div>
+                          
+                          <div class="col-md-12 modal-product-menu-style">
+                            <ul class="nav nav-tabs nav-fill " id="product-items">
+                              <li class="nav-item"><a class="nav-link active " href="#flowerJar">經典花罐</a></li>
+                              <li class="nav-item"><a class="nav-link" href="#flowerBox">繽紛花盒</a></li>
+                              <li class="nav-item"><a class="nav-link" href="#flowerAccessories">手工花飾</a></li>
+                            </ul>
+                          </div>
+                          
+                          <div class="tab-content">
+                            <div class="container-fluid tab-pane active fade show" id="flowerJar">
+                              <div class="row modal-product-list1">
+                                <div class="col-md-6">
+                                  <img id="goods11" class="img-fluid img-thumbnail modal-product-img" src="/images/goods01_1.jpg" />亞特蘭提斯之羽
+                                </div>
+                                <div class="col-md-6">
+                                  <img id="goods12" class="img-fluid img-thumbnail modal-product-img" src="/images/goods02_1.jpg" />雅典娜之淚
+                                </div>
+                                <div class="col-md-6">
+                                  <img id="goods13" class="img-fluid img-thumbnail modal-product-img" src="/images/goods03_1.jpg" />紅磨坊之吻
+                                </div>
+                              </div>
+                              
+                              <div class="row modal-product-items11">
+                                <div class="col-md-6" style="margin-top:30px">
+                                  <div id="productcarousel11" class="carousel slide " data-ride="carousel" data-interval="false">
+                                    <ol class="carousel-indicators">
+                                      <li data-target="#productcarousel11" data-slide-to="0" class="active"></li>
+                                      <li data-target="#productcarousel11" data-slide-to="1"></li>
+                                      <li data-target="#productcarousel11" data-slide-to="2"></li>
+                                      <li data-target="#productcarousel11" data-slide-to="3"></li>
+                                    </ol>
+                                    <div class="carousel-inner">
+                                      <div class="carousel-item active">
+                                        <img class="d-block w-100 img-thumbnail" src="/images/goods01_1.jpg">
+                                      </div>
+                                      <div class="carousel-item">
+                                        <img class="d-block w-100 img-thumbnail" src="/images/goods01_2.jpg">
+                                      </div>
+                                      <div class="carousel-item">
+                                        <img class="d-block w-100 img-thumbnail" src="/images/goods01_3.jpg">
+                                      </div>
+                                      <div class="carousel-item">
+                                        <img class="d-block w-100 img-thumbnail" src="/images/goods01_4.jpg">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              <div class="col-md-6">
+                                <div class="modal-product-text">
+                                  <h4>亞特蘭提斯之羽</h4>
+                                  價格：NT$520<br>
+                                  顏色：粉藍玫瑰/青鳥藍羽毛<br>
+                                  尺寸：圓筒直徑8cm/高15cm<br><hr>
+                                  
+                                  <form class="form-horizontal" method="post" action="/home/product">
+                                    <div class="form-group modal-product-from">
+                                        <input id="classHeading" name="productImg" value="https://upload.cc/i1/2018/11/03/5aQr94.jpg">
+                                        <input id="classHeading" name="productName" value="亞特蘭提斯之羽">
+                                        <input id="classHeading" name="productprice" value="520">
+                                        <label for="productQuantity" class=" col-form-label">數量：</label>
+                                        <select id="productQuantity" class="form-control" name="productQuantity">
+                                          <option selected>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                          <option>6</option>
+                                          <option>7</option>
+                                          <option>8</option>
+                                          <option>9</option>
+                                          <option>10</option>
+                                        </select>
+                                      </div>
+                                    <button type="submit" class="btn btn-primary">開始訂購</button>
+                                    <button type="button" id="modal-product-btn11" class="btn btn-primary modal-product-btn">回目錄</button>
+                                  </form>
+                                </div>
+                              </div>
+                              
+                              <div class="col-md-12 modal-product-info">
+                              商品簡介：<br>
+                              恆星花迷你花束，小巧精緻，放入花盒或是花罐裡，更易於收藏保存！永生玫瑰搭配薄如蟬翼的骨幹葉，滿天星及兔尾草點綴，瓶底鋪上蓬蓬尖尾羽毛，加上玫瑰霧金瓶蓋，微奢華又唯美～
+                              </div>
+                              
+                              </div>
+                              <div class="row modal-product-items12">
+                              <div class="col-md-6" style="margin-top:30px">
+                                <div id="productcarousel12" class="carousel slide" data-ride="carousel" data-interval="false">
+                                  <ol class="carousel-indicators">
+                                    <li data-target="#productcarousel12" data-slide-to="0" class="active"></li>
+                                    <li data-target="#productcarousel12" data-slide-to="1"></li>
+                                    <li data-target="#productcarousel12" data-slide-to="2"></li>
+                                  </ol>
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <img class="d-block w-100 img-thumbnail" src="/images/goods02_1.jpg">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img class="d-block w-100 img-thumbnail" src="/images/goods02_2.jpg">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img class="d-block w-100 img-thumbnail" src="/images/goods02_3.jpg">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="modal-product-text">
+                                  <h4>雅典娜之淚</h4>
+                                  價格：NT$520<br>
+                                  顏色：薰衣草紫玫瑰/淺灰羽毛<br>
+                                  尺寸：圓筒直徑8cm/高15cm<br><hr>
+                                  
+                                  <form class="form-horizontal" method="post" action="/home/product">
+                                    <div class="form-group modal-product-from">
+                                        <input id="classHeading" name="productImg" value="https://upload.cc/i1/2018/11/03/iBNKFJ.jpg">
+                                        <input id="classHeading" name="productName" value="雅典娜之淚">
+                                        <input id="classHeading" name="productprice" value="520">
+                                        <label for="productQuantity" class=" col-form-label">數量：</label>
+                                        <select id="productQuantity" class="form-control" name="productQuantity">
+                                          <option selected>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                          <option>6</option>
+                                          <option>7</option>
+                                          <option>8</option>
+                                          <option>9</option>
+                                          <option>10</option>
+                                        </select>
+                                      </div>
+                                    <button type="submit" class="btn btn-primary">開始訂購</button>
+                                    <button type="button" id="modal-product-btn12" class="btn btn-primary modal-product-btn">回目錄</button>
+                                  </form>
+                                </div>
+                              </div>
+                              
+                              <div class="col-md-12 modal-product-info">
+                              商品簡介：<br>
+                              恆星花迷你花束，小巧精緻，放入花盒或是花罐裡，更易於收藏保存！永生玫瑰搭配薄如蟬翼的骨幹葉，滿天星及兔尾草點綴，瓶底鋪上蓬蓬尖尾羽毛，加上玫瑰霧金瓶蓋，微奢華又唯美～
+                              </div>
+                              
+                              </div>
+                              <div class="row modal-product-items13">
+                              <div class="col-md-6" style="margin-top:30px">
+                                <div id="productcarousel13" class="carousel slide" data-ride="carousel" data-interval="false">
+                                  <ol class="carousel-indicators">
+                                    <li data-target="#productcarousel13" data-slide-to="0" class="active"></li>
+                                    <li data-target="#productcarousel13" data-slide-to="1"></li>
+                                    <li data-target="#productcarousel13" data-slide-to="2"></li>
+                                  </ol>
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <img class="d-block w-100 img-thumbnail" src="/images/goods03_1.jpg">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img class="d-block w-100 img-thumbnail" src="/images/goods03_2.jpg">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img class="d-block w-100 img-thumbnail" src="/images/goods03_3.jpg">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="modal-product-text">
+                                  <h4>紅磨坊之吻</h4>
+                                  價格：NT$520<br>
+                                  顏色：紅玫瑰/粉色羽毛<br>
+                                  尺寸：圓筒直徑8cm/高15cm<br><hr>
+                                  
+                                  <form class="form-horizontal" method="post" action="/home/product">
+                                    <div class="form-group modal-product-from">
+                                        <input id="classHeading" name="productImg" value="https://upload.cc/i1/2018/11/03/kO2F5Z.jpg">
+                                        <input id="classHeading" name="productName" value="紅磨坊之吻">
+                                        <input id="classHeading" name="productprice" value="520">
+                                        <label for="productQuantity" class=" col-form-label">數量：</label>
+                                        <select id="productQuantity" class="form-control" name="productQuantity">
+                                          <option selected>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                          <option>6</option>
+                                          <option>7</option>
+                                          <option>8</option>
+                                          <option>9</option>
+                                          <option>10</option>
+                                        </select>
+                                      </div>
+                                    <button type="submit" class="btn btn-primary">開始訂購</button>
+                                    <button type="button" id="modal-product-btn13" class="btn btn-primary modal-product-btn">回目錄</button>
+                                  </form>
+                                </div>
+                              </div>
+                              
+                              <div class="col-md-12 modal-product-info">
+                              商品簡介：<br>
+                              恆星花迷你花束，小巧精緻，放入花盒或是花罐裡，更易於收藏保存！永生玫瑰搭配薄如蟬翼的骨幹葉，滿天星及兔尾草點綴，瓶底鋪上蓬蓬尖尾羽毛，加上玫瑰霧金瓶蓋，微奢華又唯美～
+                              </div>
+                              
+                              </div>
+                            </div>
+                            
+                            <div class="container-fluid tab-pane fade" id="flowerBox">
+                              <div class="row modal-product-list2">
+                                <div class="col-md-6">
+                                  <img id="goods21" class="img-fluid img-thumbnail modal-product-img" src="/images/goods04_1.jpg" />古典森系-黑鎳色珠寶盒
+                                </div>
+                                <div class="col-md-6">
+                                  <img id="goods22" class="img-fluid img-thumbnail modal-product-img" src="/images/goods05_1.jpg" />古典森系-玫瑰金珠寶盒
+                                </div>
+                              </div>
+                              <div class="row modal-product-items21">
+                              <div class="col-md-6" style="margin-top:30px">
+                                <div id="productcarousel21" class="carousel slide" data-ride="carousel" data-interval="false">
+                                  <ol class="carousel-indicators">
+                                    <li data-target="#productcarousel21" data-slide-to="0" class="active"></li>
+                                    <li data-target="#productcarousel21" data-slide-to="1"></li>
+                                    <li data-target="#productcarousel21" data-slide-to="2"></li>
+                                  </ol>
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <img class="d-block w-100 img-thumbnail" src="/images/goods04_1.jpg">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img class="d-block w-100 img-thumbnail" src="/images/goods04_2.jpg">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img class="d-block w-100 img-thumbnail" src="/images/goods04_3.jpg">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="modal-product-text">
+                                  <h4>古典森系-黑鎳色珠寶盒</h4>
+                                  價格：NT$1,480<br>
+                                  顏色：黑鎳色珠寶盒/深邃紫<br>
+                                  尺寸：長10cm/10cm/高7cm<br><hr>
+                                  
+                                  <form class="form-horizontal" method="post" action="/home/product">
+                                    <div class="form-group modal-product-from">
+                                        <input id="classHeading" name="productImg" value="https://upload.cc/i1/2018/11/03/RnIFrC.jpg">
+                                        <input id="classHeading" name="productName" value="古典森系-黑鎳色珠寶盒">
+                                        <input id="classHeading" name="productprice" value="1480">
+                                        <label for="productQuantity" class=" col-form-label">數量：</label>
+                                        <select id="productQuantity" class="form-control" name="productQuantity">
+                                          <option selected>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                          <option>6</option>
+                                          <option>7</option>
+                                          <option>8</option>
+                                          <option>9</option>
+                                          <option>10</option>
+                                        </select>
+                                      </div>
+                                    <button type="submit" class="btn btn-primary">開始訂購</button>
+                                    <button type="button" id="modal-product-btn21" class="btn btn-primary modal-product-btn">回目錄</button>
+                                  </form>
+                                </div>
+                              </div>
+                              
+                              <div class="col-md-12 modal-product-info">
+                              商品簡介：<br>
+                              帶有陳舊感的黑鎳色精緻珠寶盒，內裡有可放置珠寶首飾的絨面襯底，深邃紫色系玫瑰搭配白色羊齒蕨，像是遺落在天鵝湖森林的神秘珠寶盒......
+                              (商品僅珠寶盒外盒，不含照片中珠寶首飾)
+                              </div>
+                              
+                              </div>
+                              <div class="row modal-product-items22">
+                              <div class="col-md-6" style="margin-top:30px">
+                                <div id="productcarousel22" class="carousel slide" data-ride="carousel" data-interval="false">
+                                  <ol class="carousel-indicators">
+                                    <li data-target="#productcarousel22" data-slide-to="0" class="active"></li>
+                                    <li data-target="#productcarousel22" data-slide-to="1"></li>
+                                    <li data-target="#productcarousel22" data-slide-to="2"></li>
+                                  </ol>
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <img class="d-block w-100 img-thumbnail" src="/images/goods05_1.jpg">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img class="d-block w-100 img-thumbnail" src="/images/goods05_2.jpg">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img class="d-block w-100 img-thumbnail" src="/images/goods04_3.jpg">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="modal-product-text">
+                                  <h4>古典森系-玫瑰金珠寶盒</h4>
+                                  價格：NT$1,480<br>
+                                  顏色：玫瑰金珠寶盒/粉嫩黃桃<br>
+                                  尺寸：長10cm/10cm/高7cm<br><hr>
+                                  
+                                  <form class="form-horizontal" method="post" action="/home/product">
+                                    <div class="form-group modal-product-from">
+                                        <input id="classHeading" name="productImg" value="https://upload.cc/i1/2018/11/03/tRQ4OJ.jpg">
+                                        <input id="classHeading" name="productName" value="古典森系-玫瑰金珠寶盒">
+                                        <input id="classHeading" name="productprice" value="1480">
+                                        <label for="productQuantity" class=" col-form-label">數量：</label>
+                                        <select id="productQuantity" class="form-control" name="productQuantity">
+                                          <option selected>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                          <option>6</option>
+                                          <option>7</option>
+                                          <option>8</option>
+                                          <option>9</option>
+                                          <option>10</option>
+                                        </select>
+                                      </div>
+                                    <button type="submit" class="btn btn-primary">開始訂購</button>
+                                    <button type="button" id="modal-product-btn22" class="btn btn-primary modal-product-btn">回目錄</button>
+                                  </form>
+                                </div>
+                              </div>
+                              
+                              <div class="col-md-12 modal-product-info">
+                              商品簡介：<br>
+                              帶有陳舊感的黑鎳色精緻珠寶盒，內裡有可放置珠寶飾的絨面襯底，深邃紫色系玫瑰搭配白色羊齒蕨，像是遺落在天鵝湖森林的神秘珠寶盒......(商品僅珠寶盒外盒，不含照片中珠寶首飾)
+                              </div>
+                              
+                              </div>
+                            </div>
+                            
+                            <div class="container-fluid tab-pane fade" id="flowerAccessories">
+                              <div class="row modal-product-list3">
+                                <div class="col-md-6">
+                                  <img id="goods31" class="img-fluid img-thumbnail modal-product-img" src="/images/goods06_1.jpg" />天使手腕花
+                                </div>
+                                <div class="col-md-6">
+                                  <img id="goods32" class="img-fluid img-thumbnail modal-product-img" src="/images/goods07_1.jpg" />璀璨手腕花
+                                </div>
+                              </div>
+                              <div class="row modal-product-items31">
+                              <div class="col-md-6" style="margin-top:30px">
+                                <div id="productcarousel31" class="carousel slide" data-ride="carousel" data-interval="false">
+                                  <ol class="carousel-indicators">
+                                    <li data-target="#productcarousel31" data-slide-to="0" class="active"></li>
+                                    <li data-target="#productcarousel31" data-slide-to="1"></li>
+                                  </ol>
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <img class="d-block w-100 img-thumbnail" src="/images/goods06_1.jpg">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img class="d-block w-100 img-thumbnail" src="/images/goods06_2.jpg">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="modal-product-text">
+                                  <h4>天使手腕花</h4>
+                                  價格：NT$890<br>
+                                  顏色：白/粉玫瑰<br>
+                                  尺寸：長14cm/14cm/高5cm<br><hr>
+                                  
+                                  <form class="form-horizontal" method="post" action="/home/product">
+                                    <div class="form-group modal-product-from">
+                                        <input id="classHeading" name="productImg" value="https://upload.cc/i1/2018/11/03/poQl0R.jpg">
+                                        <input id="classHeading" name="productName" value="天使手腕花">
+                                        <input id="classHeading" name="productprice" value="890">
+                                        <label for="productQuantity" class=" col-form-label">數量：</label>
+                                        <select id="productQuantity" class="form-control" name="productQuantity">
+                                          <option selected>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                          <option>6</option>
+                                          <option>7</option>
+                                          <option>8</option>
+                                          <option>9</option>
+                                          <option>10</option>
+                                        </select>
+                                      </div>
+                                    <button type="submit" class="btn btn-primary">開始訂購</button>
+                                    <button type="button" id="modal-product-btn31" class="btn btn-primary modal-product-btn">回目錄</button>
+                                  </form>
+                                </div>
+                              </div>
+                              
+                              <div class="col-md-12 modal-product-info">
+                              商品簡介：<br>
+                              天使捎來的祝福，化為脫俗絕美手腕花。 詢問度超高的訂製款手腕花，顏色將依據您的喜好調整，保證每款都仙氣逼人喔！
+                              (包含花材，不包含緞帶長度)
+                              </div>
+                              
+                              </div>
+                              <div class="row modal-product-items32">
+                              <div class="col-md-6" style="margin-top:30px">
+                                <div id="productcarousel32" class="carousel slide" data-ride="carousel" data-interval="false">
+                                  <ol class="carousel-indicators">
+                                    <li data-target="#productcarousel32" data-slide-to="0" class="active"></li>
+                                    <li data-target="#productcarousel32" data-slide-to="1"></li>
+                                  </ol>
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                      <img class="d-block w-100 img-thumbnail" src="/images/goods07_1.jpg">
+                                    </div>
+                                    <div class="carousel-item">
+                                      <img class="d-block w-100 img-thumbnail" src="/images/goods07_2.jpg">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="modal-product-text">
+                                  <h4>璀璨手腕花</h4>
+                                  價格：NT$890<br>
+                                  顏色：粉/紅玫瑰<br>
+                                  尺寸：長14cm/14cm/高5cm<br><hr>
+                                  
+                                  <form class="form-horizontal" method="post" action="/home/product">
+                                    <div class="form-group modal-product-from">
+                                        <input id="classHeading" name="productImg" value="https://upload.cc/i1/2018/11/03/o7TFmO.jpg">
+                                        <input id="classHeading" name="productName" value="璀璨手腕花">
+                                        <input id="classHeading" name="productprice" value="890">
+                                        <label for="productQuantity" class=" col-form-label">數量：</label>
+                                        <select id="productQuantity" class="form-control" name="productQuantity">
+                                          <option selected>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                          <option>6</option>
+                                          <option>7</option>
+                                          <option>8</option>
+                                          <option>9</option>
+                                          <option>10</option>
+                                        </select>
+                                      </div>
+                                    <button type="submit" class="btn btn-primary">開始訂購</button>
+                                    <button type="button" id="modal-product-btn32" class="btn btn-primary modal-product-btn">回目錄</button>
+                                  </form>
+                                </div>
+                              </div>
+                              
+                              <div class="col-md-12 modal-product-info">
+                              商品簡介：<br>
+                              天使捎來的祝福，化為脫俗絕美手腕花。 詢問度超高的訂製款手腕花，顏色將依據您的喜好調整，保證每款都仙氣逼人喔！
+                              (包含花材，不包含緞帶長度)
+                              </div>
+                              
+                              </div>
+                            </div>
+                            
+                          </div>
+                        </div>
+                     </div>   
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+    <!--Class-->
+    <div class="container-fluid" id="mainClass" >
+      <div class="classTitle">花藝課程</div>
+        <div class="row">
+            <div class="col-md-6">
+              <img class="img-fluid mx-auto d-block class-img" src="/images/class.jpg">
+            </div>
+            <div class="col-md-6">
+            <h5 class="class-title">遇見冬日花藝課</h5>
+              <div class="class-intro">十月的夜晚開始冷了，需要穿一件薄外套了。<br>
+              你這樣提醒著我。每年十月總是習慣，作一件禮物給自己。<br>
+              提醒自己，要記住的事，也要記得每年這個時候的你。</div><hr class="class-line"><br><br>
+                <button type="button" class="btn btn-primary class-btn" data-toggle="modal" data-target="#reservationModal">預約課程</button>
+                <button type="button" class="btn btn-primary class-btn2" id="inquire" data-toggle="modal" data-target="#inquireModal">查詢預約</button>
+            </div>
+        </div>  
+        <!-- reservationModal -->
+        <div class="modal fade" id="reservationModal" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content modal-content-style">
+              
+                <div class="modal-body-style">
+                  <div class="modal-body">
+                     <div class="container-fluid">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h5 class="modal-title modal-product-title-style" id="ModalTitle">預約課程</h5>
+                                <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                </button>
+                          </div>
+                          
+                          <div class="col-md-12 modal-class-menu-style">
+                            <ul class="nav nav-tabs nav-fill " id="class-items">
+                              <li class="nav-item"><a class="nav-link active " href="#classA">[課程A] 十月框景</a></li>
+                              <li class="nav-item"><a class="nav-link" href="#classB">[課程B] 豐收十月</a></li>
+                              <li class="nav-item"><a class="nav-link" href="#classC">[課程C] 楓紅十月</a></li>
+                              <li class="nav-item"><a class="nav-link" href="#classD">[課程D] 紅色冬日</a></li>
+                            </ul>
+                          </div>
+                          
+                          <div class="tab-content">
+                            <div class="container-fluid tab-pane active fade show" id="classA">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <img class="img-fluid modal-class-img" src="/images/classA.jpg" />
+                                </div>
+                                <div class="col-md-6">
+                                  <form class="form-horizontal modal-from" method="post" action="/home/class">
+                                    <input id="classHeading" name="classHeading" value="[課程A] 十月框景">
+                                    <div class="form-group row">
+                                        <label for="classSession" class="col-md-4 col-form-label modal-class-title">場次：</label>
+                                        <div class="col-md-8">
+                                        <select id="classSession" class="form-control" name="classSession">
+                                          <option selected>10/27(六) 09:30</option>
+                                          <option >11/3(六) 09:30</option>
+                                        </select>
+                                        </div>
+                                      </div>
+                                    <div class="form-group row">
+                                      <label for="className" class="col-md-4 col-form-label modal-class-title">姓名：</label>
+                                      <div class="col-md-8">
+                                          <input type="Name" class="form-control" id="className" name="className" required="required">
+                                      </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                      <label for="classNum" class="col-md-4 col-form-label modal-class-title">人數：</label>
+                                        <div class="col-md-8">
+                                        <select id="classNum" name="classNum" class="form-control">
+                                          <option selected>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                          <option>6</option>
+                                          <option>7</option>
+                                          <option>8</option>
+                                          <option>9</option>
+                                          <option>10</option>
+                                        </select>
+                                        </div>
+                                      </div>
+                                    <div class="form-group row">
+                                      <label for="classPhonenember" class="col-md-4 col-form-label modal-class-title">聯絡電話：</label>
+                                      <div class="col-md-8">
+                                      <input type="Phonenember" class="form-control" id="classPhonenember" name="classPhonenember" required="required">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="classEmail" class="col-md-4 col-form-label modal-class-title">電子信箱：</label>
+                                      <div class="col-md-8">
+                                      <input type="email" class="form-control" id="classEmail" name="classEmail" required="required">
+                                      </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">送出</button>
+                                    <button type="button" class="btn btn-primary class-btn2 clear">重填</button>
+                                  </form>
+                                </div>
+                                <div class="col-md-12 modal-class-info">
+                                作品形式：花禮設計 (作品結合不凋花、乾燥花與日本最新擬真乾燥素材)<br>
+                                作品尺寸：花器邊長度10cm<br>
+                                課程內容：日本進口擬真品牌花材認識、作品概念與架構技巧<br>
+                                課程費用：每人1,080元<br>
+                                注意事項：報名完成後請於電子信箱確認預約狀態
+                                </div>
+                                
+                              </div>
+                            </div>
+                            
+                            <div class="container-fluid tab-pane fade" id="classB">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <img class="img-fluid modal-class-img" src="/images/classB.jpg" />
+                                </div>
+                                <div class="col-md-6">
+                                  <form class="form-horizontal modal-from"  method="post" action="/home/class">
+                                    <input id="classHeading" name="classHeading" value="[課程B] 豐收十月">
+                                    <div class="form-group row">
+                                        <label for="classSession" class="col-md-4 col-form-label modal-class-title">場次：</label>
+                                        <div class="col-md-8">
+                                        <select id="classSession" class="form-control" name="classSession">
+                                          <option selected>10/27(六) 13:30</option>
+                                          <option>11/3(六) 13:30</option>
+                                        </select>
+                                        </div>
+                                      </div>
+                                    <div class="form-group row">
+                                      <label for="className" class="col-md-4 col-form-label modal-class-title">姓名：</label>
+                                      <div class="col-md-8">
+                                          <input type="Name" class="form-control" id="className" name="className" required="required">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="classNum" class="col-md-4 col-form-label modal-class-title">人數：</label>
+                                        <div class="col-md-8">
+                                        <select id="classNum" name="classNum" class="form-control">
+                                          <option selected>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                          <option>6</option>
+                                          <option>7</option>
+                                          <option>8</option>
+                                          <option>9</option>
+                                          <option>10</option>
+                                        </select>
+                                        </div>
+                                      </div>
+                                    <div class="form-group row">
+                                      <label for="classPhonenember" class="col-md-4 col-form-label modal-class-title">聯絡電話：</label>
+                                      <div class="col-md-8">
+                                      <input type="Phonenember" class="form-control" id="classPhonenember" name="classPhonenember" required="required">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="classEmail" class="col-md-4 col-form-label modal-class-title">電子信箱：</label>
+                                      <div class="col-md-8">
+                                      <input type="email" class="form-control" id="classEmail" name="classEmail" required="required">
+                                      </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">送出</button>
+                                    <button type="button" class="btn btn-primary class-btn2 clear">重填</button>
+                                  </form>
+                                </div>
+                                <div class="col-md-12 modal-class-info">
+                                作品形式：壁掛花束 (擬真素材與乾燥素材的結合)<br>
+                                作品尺寸：花面20cm作品總長65cm<br>
+                                課程內容：擬真素材認識、素材品牌差異、花材組合技巧<br>
+                                課程費用：每人1,080元<br>
+                                注意事項：報名完成後請於電子信箱確認預約狀態
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div class="container-fluid tab-pane fade" id="classC">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <img class="img-fluid modal-class-img" src="/images/classC.jpg" />
+                                </div>
+                                <div class="col-md-6">
+                                  <form class="form-horizontal modal-from"  method="post" action="/home/class">
+                                    <input id="classHeading" name="classHeading" value="[課程C] 楓紅十月">
+                                    <div class="form-group row">
+                                        <label for="classSession" class="col-md-4 col-form-label modal-class-title">場次：</label>
+                                        <div class="col-md-8">
+                                        <select id="classSession" class="form-control" name="classSession">
+                                          <option selected>10/28(日) 09:30</option>
+                                          <option>11/4(日) 09:30</option>
+                                        </select>
+                                        </div>
+                                      </div>
+                                    <div class="form-group row">
+                                      <label for="className" class="col-md-4 col-form-label modal-class-title">姓名：</label>
+                                      <div class="col-md-8">
+                                          <input type="Name" class="form-control" id="className" name="className" required="required">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="classNum" class="col-md-4 col-form-label modal-class-title">人數：</label>
+                                        <div class="col-md-8">
+                                        <select id="classNum" name="classNum" class="form-control">
+                                          <option selected>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                          <option>6</option>
+                                          <option>7</option>
+                                          <option>8</option>
+                                          <option>9</option>
+                                          <option>10</option>
+                                        </select>
+                                        </div>
+                                      </div>
+                                    <div class="form-group row">
+                                      <label for="classPhonenember" class="col-md-4 col-form-label modal-class-title">聯絡電話：</label>
+                                      <div class="col-md-8">
+                                      <input type="Phonenember" class="form-control" id="classPhonenember" name="classPhonenember" required="required">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="classEmail" class="col-md-4 col-form-label modal-class-title">電子信箱：</label>
+                                      <div class="col-md-8">
+                                      <input type="email" class="form-control" id="classEmail" name="classEmail" required="required">
+                                      </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">送出</button>
+                                    <button type="button" class="btn btn-primary class-btn2 clear">重填</button>
+                                  </form>
+                                </div>
+                                <div class="col-md-12 modal-class-info">
+                                作品形式：使用日本進口專用礦物油HERBAL DECOLA OIL製作 (擬真素材與乾燥素材的結合)<br>
+                                作品尺寸：長形罐4X4X20cm、LED款7X7X9cm<br>
+                                課程內容：浮游花認識、相關資材認識、作品花材比例配置與邏輯建立<br>
+                                課程費用：每人1,480元/兩瓶<br>
+                                注意事項：報名完成後請於電子信箱確認預約狀態
+                                </div>
+                              </div>
+                            </div>
+                            
+                             <div class="container-fluid tab-pane fade" id="classD">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <img class="img-fluid modal-class-img" src="/images/classD.jpg" />
+                                </div>
+                                <div class="col-md-6">
+                                  <form class="form-horizontal modal-from" method="post" action="/home/class">
+                                    <input id="classHeading" name="classHeading" value="[課程D] 紅色冬日">
+                                    <div class="form-group row">
+                                        <label for="classSession" class="col-md-4 col-form-label modal-class-title">場次：</label>
+                                        <div class="col-md-8">
+                                        <select id="classSession" class="form-control" name="classSession">
+                                          <option selected>10/28(日) 13:30</option>
+                                          <option>11/4(日) 13:30</option>
+                                        </select>
+                                        </div>
+                                      </div>
+                                    <div class="form-group row">
+                                      <label for="className" class="col-md-4 col-form-label modal-class-title">姓名：</label>
+                                      <div class="col-md-8">
+                                          <input type="Name" class="form-control" id="className" name="className" required="required">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="classNum" class="col-md-4 col-form-label modal-class-title">人數：</label>
+                                        <div class="col-md-8">
+                                        <select id="classNum" name="classNum" class="form-control">
+                                          <option selected>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                          <option>6</option>
+                                          <option>7</option>
+                                          <option>8</option>
+                                          <option>9</option>
+                                          <option>10</option>
+                                        </select>
+                                        </div>
+                                      </div>
+                                    <div class="form-group row">
+                                      <label for="classPhonenember" class="col-md-4 col-form-label modal-class-title">聯絡電話：</label>
+                                      <div class="col-md-8">
+                                      <input type="Phonenember" class="form-control" id="classPhonenember" name="classPhonenember" required="required">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="classEmail" class="col-md-4 col-form-label modal-class-title">電子信箱：</label>
+                                      <div class="col-md-8">
+                                      <input type="email" class="form-control" id="classEmail" name="classEmail" required="required">
+                                      </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">送出</button>
+                                    <button type="button" class="btn btn-primary class-btn2 clear">重填</button>
+                                  </form>
+                                </div>
+                                <div class="col-md-12 modal-class-info">
+                                作品形式：玻璃罩 (不凋花與擬真素材的結合應用)<br>
+                                作品尺寸：底座直徑11cmX玻璃罩高度15cm<br>
+                                課程內容：多元素材認識、異材質配置邏輯引導、工具資材認識<br>
+                                課程費用：每人1,680元<br>
+                                注意事項：報名完成後請於電子信箱確認預約狀態
+                                </div>
+                              </div>
+                            </div>
+                            
+                            </div>
+                          </div>
+                        </div>
+                     </div>   
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+          
+        
+        <!-- inquireModal -->
+        <div class="modal fade" id="inquireModal" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content modal-content-style">
+              
+                <div class="modal-body-style">
+                  <div class="modal-body">
+                     <div class="container-fluid">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h5 class="modal-title modal-product-title-style" id="ModalTitle">查詢預約</h5>
+                                <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                </button>
+                          </div>
+                          
+                            <div class="col-md-12">
+                              <form class="form-horizontal" method="post" action="/home/inquire">
+                                <div class="form-group row">
+                                  <label for="inquireName" class="col-md-2 col-form-label modal-class-title">姓名：</label>
+                                  <div class="col-md-7">
+                                      <input type="Name" class="form-control" id="inquireName" name="inquireName" value="<%= clientName %>" required="required">
+                                  </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                  <label for="inquirePhonenember" class="col-md-2 col-form-label modal-class-title">聯絡電話：</label>
+                                  <div class="col-md-7">
+                                  <input type="Phonenember" class="form-control modal-inquire-input" id="inquirePhonenember" name="inquirePhonenember" value="<%= clientPhone %>" required="required">
+                                  </div>
+                                  <div class="col-md-3">
+                                  <button type="submit" class="btn btn-primary">查詢預約</button>
+                                  </div>
+                                  <div class="col-md-12 modal-errorMessage" ><%- errorMessage %></div>
+                                </div>
+                              </form>
+                            </div>
+                            
+                            <div class="col-md-12 modal-inquire-style">
+                              <div class="row">
+                                <div class="col-md-9 modal-inquire-title">
+                                課程：<span class="modal-inquire-text" id="inquireClass"><%- clientClass %></span>
+                                </div>
+                                <div class="col-md-9 modal-inquire-title">
+                                場次：<span class="modal-inquire-text"><%- clientSession %></span>
+                                </div>
+                                <div class="col-md-9 modal-inquire-title">
+                                人數：<span class="modal-inquire-text"><%- clientQuantity %></span>
+                                </div>
+                                
+                                 <span class="modal-inquire-Email"><%- clientEmail %></span>
+                                
+                                <div class="col-md-3">
+                                <button type="submit" class="btn btn-primary modal-inquire-btn">取消預約</button>
+                                </div>
+                              </div>
+                              　
+                            </div>
+                            
+                          </div>
+                        </div>
+                     </div>   
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+      </div>
+    
+    <!--Connect us & Map-->
+    <div class="container-fluid" id="mainConnect">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="classTitle">聯絡我們</div>
+                <form class="form-horizontal input-from-style" method="post" action="/home/connect">
+                  <div class="form-group row input-from">
+                    <label for="InputName" class="col-md-2 col-form-label">姓名</label>
+                    <div class="col-md-10">
+                        <input type="Name" class="form-control" id="InputName" name="InputName" required="required">
+                    </div>
+                  </div>
+                  <div class="form-group row input-from">
+                      <label for="InputGender" class="col-md-2 col-form-label">性別</label>
+                      <div class="col-md-10">
+                      <select id="InputGender" name="InputGender" class="form-control">
+                        <option value="0" selected>先生</option>
+                        <option value="1">小姐</option>
+                      </select>
+                      </div>
+                    </div>
+                  <div class="form-group row input-from">
+                    <label for="InputPhonenember" class="col-md-2 col-form-label">聯絡電話</label>
+                    <div class="col-md-10">
+                    <input type="Phonenember" class="form-control" id="InputPhonenember" name="InputPhonenember" required="required">
+                    </div>
+                  </div>
+                  <div class="form-group row input-from">
+                    <label for="InputEmail" class="col-md-2 col-form-label">電子信箱</label>
+                    <div class="col-md-10">
+                    <input type="email" class="form-control" id="InputEmail" name="InputEmail" required="required">
+                    </div>
+                  </div>
+                  <div class="form-group row input-from">
+                    <label for="InputOpinion" class="col-md-2 col-form-label">聯絡事項</label>
+                    <div class="col-md-10">
+                    <textarea type="Opinion" class="form-control" rows="6" id="InputOpinion" name="InputOpinion"required="required"></textarea>
+                    </div>
+                  </div>
+                    <button type="submit" class="btn btn-primary input-btn">送出</button>
+                    <button type="button" class="btn btn-primary input-btn2 connect-clear">重填</button>
+                </form>
+                
+            </div>
+            <div class="col-md-6">
+              <div class="classTitle">店家位置</div>
+                <div class="embed-responsive embed-responsive-4by3 iframe-map">
+                    <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.68030639476!2d120.64816611455188!3d24.14786288439494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693dbd928c3341%3A0x3701f64b05e6cd9a!2zNDA45Y-w5Lit5biC5Y2X5bGv5Y2A5aSn5aKp5Y2B6KGXMTg26Jmf!5e0!3m2!1szh-TW!2stw!4v1539401381531"></iframe>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <!--footer-->
+    <div class="footer page-footer container-fluid footer-style">
+      <div class="row">
+          <div class="col-md-7 footer-left">
+            <div class="row">
+              <div class="col-md-6 footer-info">營業時間：週一~週日 10:00~18:00</div>
+              <div class="col-md-6 footer-info">店休時間：固定週三</div>
+              <div class="col-md-6 footer-info">連絡電話：04-2243-0766</div>
+              <div class="col-md-6 footer-info">電子信箱：Suei-Yi@gmail.com</div>
+              <div class="col-md-6 footer-info">門市地址：台中市南屯區大墩十街186號 </div>
+            </div>
+          </div>
+          <div class="col-md-5 footer-right">
+            <div class="footer-icon-logo"><img class="img-fluid" src="/images/logo.png"/></div>
+            <div class="footer-icon"><img src="/images/fb.png"/></div>
+            <div class="footer-icon"><img src="/images/ig.png"/></div>
+            <div class="footer-icon"><img src="/images/twitter.png"/></div><br><br><br><br>
+            <div class="footer-rights">Copyright 2018 Suei-Yi All Rights Reserved.</div>
+          </div>
+      </div>
+    </div>
+    
+    
+    <!-- Optional JavaScript -->
+     <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/js/jquery.flexisel.js"></script>
+    <script>
+      // init.
+      $(function () {
+          
+          //大圖輪播
+          $('.carousel').carousel({
+              pause: "false"
+          });
+          
+          //錨點滑動
+          $('#menuImage').click(function(){
+              $('html,body').animate({scrollTop:$('#mainImage').offset().top},1000);
+          });
+          $('#menuIntroduction').click(function(){
+              $('html,body').animate({scrollTop:$('#mainIntroduction').offset().top},1000);
+          });
+          $('#menuProduct').click(function(){
+              $('html,body').animate({scrollTop:$('#mainProduct').offset().top},1000);
+          });
+          $('#menuClass').click(function(){
+              $('html,body').animate({scrollTop:$('#mainClass').offset().top},1000);
+          });
+          $('#menuConnect').click(function(){
+              $('html,body').animate({scrollTop:$('#mainConnect').offset().top},1000);
+          });
+          $('#modal-menuImage').click(function(){
+              $('html,body').animate({scrollTop:$('#mainImage').offset().top},1000);
+          });
+          $('#modal-menuIntroduction').click(function(){
+              $('html,body').animate({scrollTop:$('#mainIntroduction').offset().top},1000);
+          });
+          $('#modal-menuProduct').click(function(){
+              $('html,body').animate({scrollTop:$('#mainProduct').offset().top},1000);
+          });
+          $('#modal-menuClass').click(function(){
+              $('html,body').animate({scrollTop:$('#mainClass').offset().top},1000);
+          });
+          $('#modal-menuConnect').click(function(){
+              $('html,body').animate({scrollTop:$('#mainConnect').offset().top},1000);
+          });
+          
+          //導覽列
+          $(".modal-menu").click(function(e) {
+             $("#menuModal").modal("hide");
+          })
+          
+          //購物車繼續購物
+          $(".shopping-btn").click(function(e) {
+             $("#shoppingModal").modal("hide");
+             $("#productModal").modal("show");
+             cleardiv();
+            $(".modal-product-list1").show();
+            $(".modal-product-list2").show();
+            $(".modal-product-list3").show();
+          })
+          
+          //產品資料導入購物車
+          if ($(".modal-shopping-Quantity").val() != 0 && $("#inquireName").val() == ""){
+            $("#shoppingModal").modal('show') ;
+          }
+          
+          //側欄變色 & 購物車產品總計
+          setInterval(function(){
+              var meunPosition = $(".menuIcon").offset().top;
+              var shoppingPosition = $(".shoppingIcon").offset().top;
+              var pointPosition1 = $(".sideMenuPoint:eq(0)").offset().top;
+              var pointPosition2 = $(".sideMenuPoint:eq(1)").offset().top;
+              var pointPosition3 = $(".sideMenuPoint:eq(2)").offset().top;
+              var pointPosition4 = $(".sideMenuPoint:eq(3)").offset().top;
+              var pointPosition5 = $(".sideMenuPoint:eq(4)").offset().top;
+              var mainImgH = $(".active img.d-block").css("height");
+              var mainImgHH = parseInt(mainImgH);
+              // console.log(mainImgHH);
+                if(meunPosition >= mainImgHH - 16) {
+                  $(".menuIcon").attr("src","/images/menu_b.png") 
+                } 
+                else {
+                  $(".menuIcon").attr("src","/images/menu_w.png") 
+                }
+                if(shoppingPosition >= mainImgHH - 16) {
+                  $(".shoppingIcon").attr("src","/images/shopping_b.png") 
+                } 
+                else {
+                  $(".shoppingIcon").attr("src","/images/shopping_w.png") 
+                }
+                if(pointPosition1 >= mainImgHH - 7) {
+                  $(".sideMenuPoint:eq(0) li").css("background","black") 
+                } 
+                else{
+                  $(".sideMenuPoint:eq(0) li").css("background","white")
+                }
+                if(pointPosition2 >= mainImgHH - 7) {
+                  $(".sideMenuPoint:eq(1) li").css("background","black") 
+                } 
+                else{
+                  $(".sideMenuPoint:eq(1) li").css("background","white")
+                }
+                if(pointPosition3 >= mainImgHH - 7) {
+                  $(".sideMenuPoint:eq(2) li").css("background","black") 
+                } 
+                else{
+                  $(".sideMenuPoint:eq(2) li").css("background","white")
+                }
+                if(pointPosition4 >= mainImgHH - 7) {
+                  $(".sideMenuPoint:eq(3) li").css("background","black") 
+                } 
+                else{
+                  $(".sideMenuPoint:eq(3) li").css("background","white")
+                }
+                if(pointPosition5 >= mainImgHH - 7) {
+                  $(".sideMenuPoint:eq(4) li").css("background","black") 
+                } 
+                else{
+                  $(".sideMenuPoint:eq(4) li").css("background","white")
+                }
+            
+              var productprice = $(".price").eq(0).text();
+              var productQuantity = $(".quantity").eq(0).val();
+              var productSum = productprice * productQuantity;
+              $(".total").text(productSum)
+              $(".total2").val(productSum)
+            
+            
+          }, 1000/77)
+          
+          //產品輪播
+          $("#productItem").flexisel({
+              visibleItems: 4,
+              itemsToScroll: 1,  
+              animationSpeed: 1000,
+              autoPlay: true,
+              autoPlaySpeed: 5000,            
+              pauseOnHover: true,
+              enableResponsiveBreakpoints: true,
+              responsiveBreakpoints: { 
+                  portrait: { 
+                      changePoint:480,
+                      visibleItems: 1
+                  }, 
+                  landscape: { 
+                      changePoint:768,
+                      visibleItems: 2
+                  },
+                  tablet: { 
+                      changePoint:1024,
+                      visibleItems: 3
+                  }
+              }
+          });
+          
+          //產品分頁書籤
+          function cleardiv(){
+              $(".modal-product-items11").hide();
+              $(".modal-product-items12").hide();
+              $(".modal-product-items13").hide();
+              $(".modal-product-items21").hide();
+              $(".modal-product-items22").hide();
+              $(".modal-product-items31").hide();
+              $(".modal-product-items32").hide();
+              $(".modal-product-list1").hide();
+              $(".modal-product-list2").hide();
+              $(".modal-product-list3").hide();
+          };
+          
+          cleardiv();
+          
+            // $('#product-items a::eq(1)').tab('show');
+            
+          $('#product-items a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+            cleardiv();
+            $(".modal-product-list1").show();
+            $(".modal-product-list2").show();
+            $(".modal-product-list3").show();
+          })
+          
+          //產品連結
+          $('.product-btn').click(function (e) {
+            cleardiv();
+            $(".modal-product-list1").show();
+            $(".modal-product-list2").show();
+            $(".modal-product-list3").show();
+          })
+          //產品1-1
+          $('#productName11').click(function (e) {
+            $('#product-items a:eq(0)').tab('show');
+            cleardiv();
+            $(".modal-product-items11").fadeIn(500);
+          })
+          $('#goods11').click(function (e) {
+            $(".modal-product-items11").fadeIn(500);
+            $(".modal-product-list1").hide();
+          })
+          $('#modal-product-btn11').click(function (e) {
+            $(".modal-product-items11").hide();
+            $(".modal-product-list1").fadeIn(500);
+          })
+          //產品1-2
+          $('#productName12').click(function (e) {
+            $('#product-items a:eq(0)').tab('show');
+            cleardiv();
+            $(".modal-product-items12").fadeIn(500);
+          })
+          $('#goods12').click(function (e) {
+            $(".modal-product-items12").fadeIn(500);
+            $(".modal-product-list1").hide();
+          })
+          $('#modal-product-btn12').click(function (e) {
+            $(".modal-product-items12").hide();
+            $(".modal-product-list1").fadeIn(500);
+          })
+          //產品1-3
+          $('#productName13').click(function (e) {
+            $('#product-items a:eq(0)').tab('show');
+            cleardiv();
+            $(".modal-product-items13").fadeIn(500);
+          })
+          $('#goods13').click(function (e) {
+            $(".modal-product-items13").fadeIn(500);
+            $(".modal-product-list1").hide();
+          })
+          $('#modal-product-btn13').click(function (e) {
+            $(".modal-product-items13").hide();
+            $(".modal-product-list1").fadeIn(500);
+          })
+          //產品2-1
+          $('#productName21').click(function (e) {
+            $('#product-items a:eq(1)').tab('show');
+            cleardiv();
+            $(".modal-product-items21").fadeIn(500);
+          })
+          $('#goods21').click(function (e) {
+            $(".modal-product-items21").fadeIn(500);
+            $(".modal-product-list2").hide();
+          })
+          $('#modal-product-btn21').click(function (e) {
+            $(".modal-product-items21").hide();
+            $(".modal-product-list2").fadeIn(500);
+          })
+          //產品2-2
+          $('#productName22').click(function (e) {
+            $('#product-items a:eq(1)').tab('show');
+            cleardiv();
+            $(".modal-product-items22").fadeIn(500);
+          })
+          $('#goods22').click(function (e) {
+            $(".modal-product-items22").fadeIn(500);
+            $(".modal-product-list2").hide();
+          })
+          $('#modal-product-btn22').click(function (e) {
+            $(".modal-product-items22").hide();
+            $(".modal-product-list2").fadeIn(500);
+          })
+          //產品3-1
+          $('#productName31').click(function (e) {
+            $('#product-items a:eq(2)').tab('show');
+            cleardiv();
+            $(".modal-product-items31").fadeIn(500);
+          })
+          $('#goods31').click(function (e) {
+            $(".modal-product-items31").fadeIn(500);
+            $(".modal-product-list3").hide();
+          })
+          $('#modal-product-btn31').click(function (e) {
+            $(".modal-product-items31").hide();
+            $(".modal-product-list3").fadeIn(500);
+          })
+          //產品3-2
+          $('#productName32').click(function (e) {
+            
+            cleardiv();
+            $('#product-items a:eq(2)').tab('show');
+            console.log(cleardiv)
+            $(".modal-product-items32").fadeIn(500);
+          })
+          $('#goods32').click(function (e) {
+            $(".modal-product-items32").fadeIn(500);
+            $(".modal-product-list3").hide();
+          })
+          $('#modal-product-btn32').click(function (e) {
+            $(".modal-product-items32").hide();
+            $(".modal-product-list3").fadeIn(500);
+          })
+          
+          //課程分頁書籤
+          $('#class-items a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+          })
+          
+          //欄位清空
+          $('.clear').click(function (e) {
+            $('#classSession option:eq(0)').prop('selected', 'selected');
+            $('#className').val("");
+            $('#classNum option:eq(0)').prop('selected', 'selected');
+            $('#classPhonenember').val("");
+            $('#classEmail').val("");
+          });
+          
+          $('.connect-clear').click(function (e) {
+            $('#InputName').val("");
+            $('#inputGender option[value=0]').prop('selected', 'selected');
+            $('#InputPhonenember').val("");
+            $('#InputEmail').val("");
+            $('#InputOpinion').val("");
+          });
+          
+          //查詢課程欄位清空
+          $('#inquire').click(function (e) {
+            $("#inquireName").val("");
+            $("#inquirePhonenember").val("");
+            $(".modal-errorMessage").text("");
+            $(".modal-inquire-text").text("");
+            $(".modal-inquire-Email").text("")
+            $(".modal-inquire-btn").hide();
+          });
+          
+          //查詢課程檢查回傳
+          if ($("#inquireName").val() != "" && $("#inquirePhonenember").val() != ""){
+            $("#inquireModal").modal('show') ;
+          }
+          
+          //取消預約按鈕顯示
+          $(".modal-inquire-btn").hide();
+          if ($(".modal-inquire-text").text() != ""){
+            $(".modal-inquire-btn").show();
+          }
+          
+          //取消已預約課程
+          $(".modal-inquire-btn").click(function () {
+            var dataToServer = {
+              inquireName: $("#inquireName").val(),
+              inquirePhonenember: $("#inquirePhonenember").val(),
+              inquireClass: $("#inquireClass").text(),
+              inquireEmail: $(".modal-inquire-Email").text()
+            }
+            // alert(inquirelist);
+            $.ajax({
+                type: "delete",
+                url: "/home/inquire",
+                data: JSON.stringify(dataToServer),
+                contentType: "application/json",
+                success: function(e) {
+                    
+                }
+            })
+            
+            $("#inquireModal").modal('hide');
+          
+          })
+          
+      })  // end of init.
+    
+    </script>
+  </body>
+</html>

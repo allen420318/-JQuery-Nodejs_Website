@@ -1,0 +1,72 @@
+create database topicDb default character set utf8;
+
+use topicDb;
+
+create table class
+(
+    clientID int primary key auto_increment,
+    clientClass varchar(20),
+    clientSession varchar(20),
+    clientName varchar(20),
+    clientQuantity int(5),
+    clientPhone varchar(20),
+    clientEmail varchar(50)
+);
+
+insert into class values
+   (1,'[課程A]十月框景','11/3(六) 9:30', 'allen','2','0921456123','abc123@gmail.com');
+
+select * from class;
+
+________________________________________________________________________________________
+
+INSERT INTO class
+(clientClass, clientSession, clientName, clientQuantity,clientPhone,clientEmail)
+VALUES 
+('[課程A]十月框景' ,'10/27(六) 9:30','roy','4' ,'0911223344', 'abc123@gmail.com');
+
+_________________________________________________________________________________________
+
+create table product
+(
+    clientID int primary key auto_increment,
+    clientName varchar(20),
+    clientProduct varchar(200),
+    clientQuantity int(20),
+    clientAmount int(20),
+    clientPhone varchar(20),
+    clientEmail varchar(50),
+    clientAddress varchar(200),
+    clientMethod varchar(20)
+);
+
+INSERT INTO product
+(clientName, clientProduct, clientQuantity, clientAmount, clientPhone, clientEmail, clientAddress, clientMethod)
+VALUES 
+('Allen' ,'亞特蘭提斯之羽','2','520','0911223344' ,'abc123@gmail.com', '台中市南屯區大墩十街186號','信用卡');
+
+select * from product;
+
+
+_________________________________________________________________________________________
+
+create table goods
+(
+    goodsID int primary key auto_increment,
+    goodsImg varchar(200),
+    goodsName varchar(200),
+    goodsPrice int(10),
+    goodsQuantity int(10)
+);
+
+insert into goods values
+   ('https://upload.cc/i1/2018/11/03/5aQr94.jpg','亞特蘭提斯之羽','520','1');
+insert into goods values
+   ('https://upload.cc/i1/2018/11/03/iBNKFJ.jpg','雅典娜之淚','520','2');
+   
+select * from goods;
+
+_________________________________________________________________________________________
+
+//清空資料表
+TRUNCATE TABLE goods;
